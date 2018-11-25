@@ -22,5 +22,8 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation appmodules.domain
+
     implementation deps.kotlin
+    implementation deps.appcompat
 }
