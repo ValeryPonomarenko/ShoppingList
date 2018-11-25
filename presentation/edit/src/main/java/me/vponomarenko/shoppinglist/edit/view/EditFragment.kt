@@ -7,7 +7,9 @@ import android.view.MenuInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import me.vponomarenko.injectionmanager.IHasComponent
 import me.vponomarenko.shoppinglist.edit.R
+import me.vponomarenko.shoppinglist.edit.di.EditComponent
 
 /**
  * Author: Valery Ponomarenko
@@ -15,7 +17,7 @@ import me.vponomarenko.shoppinglist.edit.R
  * LinkedIn: https://www.linkedin.com/in/ponomarenkovalery
  */
 
-class EditFragment : Fragment() {
+class EditFragment : Fragment(), IHasComponent<EditComponent> {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -29,4 +31,6 @@ class EditFragment : Fragment() {
         inflater.inflate(R.menu.menu_edit, menu)
         super.onCreateOptionsMenu(menu, inflater)
     }
+
+    override fun getComponent() = EditComponent.init()
 }

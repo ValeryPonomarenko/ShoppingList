@@ -1,13 +1,18 @@
 def appcompat_version = "1.0.2"
 def constraintlayout_version = "2.0.0-alpha2"
 def navigation_version = "1.0.0-alpha07"
+def dagger_version = "2.19"
+def componentsmanager_version = "2.0.1"
 
 ext.deps = [
-        kotlin          : "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version",
-        appcompat       : "androidx.appcompat:appcompat:$appcompat_version",
-        constraintlayout: "androidx.constraintlayout:constraintlayout:$constraintlayout_version",
-        navfragment     : "android.arch.navigation:navigation-fragment-ktx:$navigation_version",
-        navui           : "android.arch.navigation:navigation-ui-ktx:$navigation_version"
+        kotlin           : "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version",
+        appcompat        : "androidx.appcompat:appcompat:$appcompat_version",
+        constraintlayout : "androidx.constraintlayout:constraintlayout:$constraintlayout_version",
+        navfragment      : "android.arch.navigation:navigation-fragment-ktx:$navigation_version",
+        navui            : "android.arch.navigation:navigation-ui-ktx:$navigation_version",
+        dagger           : "com.google.dagger:dagger:$dagger_version",
+        daggercompiler   : "com.google.dagger:dagger-compiler:$dagger_version",
+        componentsmanager: "com.github.valeryponomarenko.componentsmanager:androidx:$componentsmanager_version",
 ]
 
 ext.appmodules = [

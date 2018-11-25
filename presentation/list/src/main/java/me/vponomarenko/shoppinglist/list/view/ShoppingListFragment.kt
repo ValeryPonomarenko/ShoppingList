@@ -8,8 +8,12 @@ import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import me.vponomarenko.injectionmanager.IHasComponent
+import me.vponomarenko.injectionmanager.x.XInjectionManager
 import me.vponomarenko.shoppinglist.list.R
+import me.vponomarenko.shoppinglist.list.di.ListComponent
 import me.vponomarenko.shoppinglist.list.navigation.ShoppingListNavigation
+import javax.inject.Inject
 
 /**
  * Author: Valery Ponomarenko
@@ -17,13 +21,13 @@ import me.vponomarenko.shoppinglist.list.navigation.ShoppingListNavigation
  * LinkedIn: https://www.linkedin.com/in/ponomarenkovalery
  */
 
-class ShoppingListFragment : Fragment() {
+class ShoppingListFragment : Fragment(), IHasComponent<ListComponent> {
 
-    private val navigation by lazy {
-        requireActivity() as? ShoppingListNavigation ?: throw IllegalStateException()
-    }
+    @Inject
+    internal lateinit var navigation: ShoppingListNavigation
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        XInjectionManager.bindComponent(this).inject(this)
         super.onCreate(savedInstanceState)
         setHasOptionsMenu(true)
     }
@@ -45,4 +49,6 @@ class ShoppingListFragment : Fragment() {
             else -> super.onOptionsItemSelected(item)
         }
     }
+
+    override fun getComponent() = ListComponent.init()
 }

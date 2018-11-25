@@ -1,6 +1,7 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
 
 android {
     compileSdkVersion versions.targetSdkVersion
@@ -31,6 +32,10 @@ dependencies {
     implementation deps.appcompat
     implementation deps.navfragment
     implementation deps.navui
+    implementation deps.componentsmanager
+    implementation deps.dagger
+    kapt deps.daggercompiler
+
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test:runner:1.1.0'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.0'
