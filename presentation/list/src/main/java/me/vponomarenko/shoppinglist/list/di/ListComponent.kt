@@ -2,6 +2,7 @@ package me.vponomarenko.shoppinglist.list.di
 
 import dagger.Component
 import me.vponomarenko.injectionmanager.x.XInjectionManager
+import me.vponomarenko.shoppinglist.domain.di.DomainDepsOut
 import me.vponomarenko.shoppinglist.list.view.ShoppingListFragment
 import javax.inject.Singleton
 
@@ -13,7 +14,7 @@ import javax.inject.Singleton
 
 @Singleton
 @Component(
-    dependencies = [ShoppingListComponentDepsIn::class],
+    dependencies = [ShoppingListComponentDepsIn::class, DomainDepsOut::class],
     modules = []
 )
 interface ListComponent {
@@ -21,6 +22,7 @@ interface ListComponent {
         fun init(): ListComponent =
             DaggerListComponent.builder()
                 .shoppingListComponentDepsIn(XInjectionManager.findComponent())
+                .domainDepsOut(XInjectionManager.findComponent())
                 .build()
     }
 

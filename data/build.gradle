@@ -20,4 +20,7 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation appmodules.domain
     implementation deps.kotlin
+    implementation deps.rxjava
+    implementation deps.dagger
+    kapt deps.daggercompiler
 }

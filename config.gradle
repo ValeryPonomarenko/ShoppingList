@@ -3,6 +3,9 @@ def constraintlayout_version = "2.0.0-alpha2"
 def navigation_version = "1.0.0-alpha07"
 def dagger_version = "2.19"
 def componentsmanager_version = "2.0.1"
+def rxjava_version = "2.2.4"
+def rxandroid_version = "2.1.0"
+def viewmodel_version = "2.0.0"
 
 ext.deps = [
         kotlin           : "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version",
@@ -13,6 +16,9 @@ ext.deps = [
         dagger           : "com.google.dagger:dagger:$dagger_version",
         daggercompiler   : "com.google.dagger:dagger-compiler:$dagger_version",
         componentsmanager: "com.github.valeryponomarenko.componentsmanager:androidx:$componentsmanager_version",
+        rxjava           : "io.reactivex.rxjava2:rxjava:$rxjava_version",
+        rxandroid        : "io.reactivex.rxjava2:rxandroid:$rxandroid_version",
+        viewmodel        : "androidx.lifecycle:lifecycle-extensions:$viewmodel_version"
 ]
 
 ext.appmodules = [
