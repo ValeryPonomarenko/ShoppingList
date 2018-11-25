@@ -1,1 +1,6 @@
-include ':app'
+include ':app', ':domain', ':data'
+
+include ':presentation_list'
+project(':presentation_list').projectDir = new File(rootDir, 'presentation/list')
+include ':presentation_edit'
+project(':presentation_edit').projectDir = new File(rootDir, 'presentation/edit')
