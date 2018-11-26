@@ -15,7 +15,7 @@ import javax.inject.Singleton
 @Singleton
 @Component(
     dependencies = [ShoppingListComponentDepsIn::class, DomainDepsOut::class],
-    modules = []
+    modules = [ListModule::class]
 )
 interface ListComponent {
     companion object {

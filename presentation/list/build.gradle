@@ -29,4 +29,5 @@ dependencies {
     implementation deps.componentsmanager
     implementation deps.dagger
     kapt deps.daggercompiler
+    implementation deps.recyclerview
 }
