@@ -28,7 +28,8 @@ ext.appmodules = [
         domain      : project(':domain'),
         presentation: [
                 list: project(':presentation_list'),
-                edit: project(':presentation_edit')
+                edit: project(':presentation_edit'),
+                common: project(':presentation_common')
         ]
 ]
 

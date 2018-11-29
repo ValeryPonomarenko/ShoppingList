@@ -3,7 +3,7 @@ package me.vponomarenko.shoppinglist.domain.usecases
 import io.reactivex.Completable
 import io.reactivex.Scheduler
 import me.vponomarenko.shoppinglist.domain.api.ShoppingListRepository
-import me.vponomarenko.shoppinglist.domain.entity.ListItem
+import me.vponomarenko.shoppinglist.domain.entity.ShoppingListItem
 
 /**
  * Author: Valery Ponomarenko
@@ -21,7 +21,7 @@ class SaveShoppingListUseCase(
     }
 
     operator fun invoke(list: String): Completable =
-        repository.saveShoppingList(list.split(LIST_DELIMITER).map { ListItem(it, false) })
+        repository.saveShoppingList(list.split(LIST_DELIMITER).map { ShoppingListItem(it, false) })
             .subscribeOn(ioScheduler)
             .observeOn(uiScheduler)
 }

@@ -6,7 +6,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.extensions.LayoutContainer
 import kotlinx.android.synthetic.main.item_list.*
-import me.vponomarenko.shoppinglist.domain.entity.ListItem
+import me.vponomarenko.shoppinglist.domain.entity.ShoppingListItem
 import me.vponomarenko.shoppinglist.list.R
 
 internal class ShoppingItemViewHolder(
@@ -18,7 +18,7 @@ internal class ShoppingItemViewHolder(
             ShoppingItemViewHolder(inflater.inflate(R.layout.item_list, container, false), clickListener)
     }
 
-    fun onBind(item: ListItem) {
+    fun onBind(item: ShoppingListItem) {
         cb_item_name.text = item.title
         cb_item_name.isChecked = item.isChecked
         cb_item_name.setOnClickListener { onClickListener?.invoke(item) }

@@ -6,7 +6,7 @@ package me.vponomarenko.shoppinglist.domain.entity
  * LinkedIn: https://www.linkedin.com/in/ponomarenkovalery
  */
 
-data class ListItem(
+data class ShoppingListItem(
     val title: String,
     val isChecked: Boolean
 )

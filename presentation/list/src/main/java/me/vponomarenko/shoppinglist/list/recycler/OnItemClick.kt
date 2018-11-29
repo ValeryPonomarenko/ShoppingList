@@ -1,5 +1,5 @@
 package me.vponomarenko.shoppinglist.list.recycler
 
-import me.vponomarenko.shoppinglist.domain.entity.ListItem
+import me.vponomarenko.shoppinglist.domain.entity.ShoppingListItem
 
-internal typealias OnItemClick = (ListItem) -> Unit
+internal typealias OnItemClick = (ShoppingListItem) -> Unit

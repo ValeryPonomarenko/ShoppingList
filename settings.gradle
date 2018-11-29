@@ -1,5 +1,7 @@
 include ':app', ':domain', ':data'
 
+include ':presentation_common'
+project(':presentation_common').projectDir = new File(rootDir, 'presentation/common')
 include ':presentation_list'
 project(':presentation_list').projectDir = new File(rootDir, 'presentation/list')
 include ':presentation_edit'

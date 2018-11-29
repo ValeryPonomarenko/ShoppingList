@@ -3,7 +3,7 @@ package me.vponomarenko.shoppinglist.domain.usecases
 import io.reactivex.Completable
 import io.reactivex.Scheduler
 import me.vponomarenko.shoppinglist.domain.api.ShoppingListRepository
-import me.vponomarenko.shoppinglist.domain.entity.ListItem
+import me.vponomarenko.shoppinglist.domain.entity.ShoppingListItem
 
 /**
  * Author: Valery Ponomarenko
@@ -16,7 +16,7 @@ class UpdateListItemUseCase(
     private val uiScheduler: Scheduler,
     private val ioScheduler: Scheduler
 ) {
-    operator fun invoke(item: ListItem): Completable =
+    operator fun invoke(item: ShoppingListItem): Completable =
         repository.updateListItem(item.copy(isChecked = !item.isChecked))
             .subscribeOn(ioScheduler)
             .observeOn(uiScheduler)

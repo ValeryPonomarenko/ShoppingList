@@ -2,7 +2,7 @@ package me.vponomarenko.shoppinglist.domain.api
 
 import io.reactivex.Completable
 import io.reactivex.Observable
-import me.vponomarenko.shoppinglist.domain.entity.ListItem
+import me.vponomarenko.shoppinglist.domain.entity.ShoppingListItem
 
 /**
  * Author: Valery Ponomarenko
@@ -11,7 +11,7 @@ import me.vponomarenko.shoppinglist.domain.entity.ListItem
  */
 
 interface ShoppingListRepository {
-    fun loadShoppingList(): Observable<List<ListItem>>
-    fun saveShoppingList(list: List<ListItem>): Completable
-    fun updateListItem(item: ListItem): Completable
+    fun loadShoppingList(): Observable<List<ShoppingListItem>>
+    fun saveShoppingList(list: List<ShoppingListItem>): Completable
+    fun updateListItem(item: ShoppingListItem): Completable
 }

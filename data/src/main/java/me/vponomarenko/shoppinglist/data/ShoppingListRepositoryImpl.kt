@@ -2,8 +2,10 @@ package me.vponomarenko.shoppinglist.data
 
 import io.reactivex.Completable
 import io.reactivex.Observable
+import me.vponomarenko.shoppinglist.data.data.DataShoppingListItem
+import me.vponomarenko.shoppinglist.data.datasources.ShoppingListDataSource
 import me.vponomarenko.shoppinglist.domain.api.ShoppingListRepository
-import me.vponomarenko.shoppinglist.domain.entity.ListItem
+import me.vponomarenko.shoppinglist.domain.entity.ShoppingListItem
 import javax.inject.Inject
 
 /**
@@ -12,16 +14,15 @@ import javax.inject.Inject
  * LinkedIn: https://www.linkedin.com/in/ponomarenkovalery
  */
 
-internal class ShoppingListRepositoryImpl @Inject constructor() : ShoppingListRepository {
-    override fun loadShoppingList(): Observable<List<ListItem>> {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
+internal class ShoppingListRepositoryImpl @Inject constructor(
+    private val dataSource: ShoppingListDataSource
+) : ShoppingListRepository {
+    override fun loadShoppingList(): Observable<List<ShoppingListItem>> =
+        dataSource.loadShoppingList().map { items -> items.map { it.toShoppingListItem() } }
 
-    override fun saveShoppingList(list: List<ListItem>): Completable {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
+    override fun saveShoppingList(list: List<ShoppingListItem>): Completable =
+        dataSource.saveShoppingList(list.map { DataShoppingListItem(it) })
 
-    override fun updateListItem(item: ListItem): Completable {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
+    override fun updateListItem(item: ShoppingListItem): Completable =
+        dataSource.updateListItem(DataShoppingListItem(item))
 }

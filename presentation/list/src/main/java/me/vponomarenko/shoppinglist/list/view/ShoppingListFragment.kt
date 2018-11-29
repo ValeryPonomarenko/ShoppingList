@@ -8,14 +8,19 @@ import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.fragment_list.*
 import me.vponomarenko.injectionmanager.IHasComponent
 import me.vponomarenko.injectionmanager.x.XInjectionManager
+import me.vponomarenko.shoppinglist.common.ViewModelFactory
+import me.vponomarenko.shoppinglist.common.extensions.observe
 import me.vponomarenko.shoppinglist.list.R
 import me.vponomarenko.shoppinglist.list.di.ListComponent
 import me.vponomarenko.shoppinglist.list.navigation.ShoppingListNavigation
 import me.vponomarenko.shoppinglist.list.recycler.ShoppingListAdapter
+import me.vponomarenko.shoppinglist.list.viewmodel.ShoppingListViewModel
+import me.vponomarenko.shoppinglist.list.viewstate.ShoppingListViewState
 import javax.inject.Inject
 
 /**
@@ -32,6 +37,13 @@ class ShoppingListFragment : Fragment(), IHasComponent<ListComponent> {
     @Inject
     internal lateinit var adapter: ShoppingListAdapter
 
+    @Inject
+    internal lateinit var viewModelFactory: ViewModelFactory
+
+    private val viewModel by lazy {
+        ViewModelProviders.of(this, viewModelFactory).get(ShoppingListViewModel::class.java)
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         XInjectionManager.bindComponent(this).inject(this)
         super.onCreate(savedInstanceState)
@@ -46,6 +58,17 @@ class ShoppingListFragment : Fragment(), IHasComponent<ListComponent> {
         recyclerView.apply {
             layoutManager = LinearLayoutManager(requireContext())
             adapter = this@ShoppingListFragment.adapter
+        }
+        viewModel.viewState.observe(this) {
+            when (it) {
+                is ShoppingListViewState.Loading -> {
+
+                }
+                is ShoppingListViewState.Loaded -> {
+                    adapter.update(it.items)
+                }
+                is ShoppingListViewState.Error -> {}
+            }
         }
     }
 

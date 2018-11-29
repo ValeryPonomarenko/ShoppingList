@@ -25,10 +25,6 @@ dependencies {
     implementation appmodules.domain
 
     implementation deps.kotlin
-    implementation deps.appcompat
-    implementation deps.componentsmanager
     implementation deps.dagger
-    kapt deps.daggercompiler
     implementation deps.viewmodel
-    implementation deps.rxjava
 }

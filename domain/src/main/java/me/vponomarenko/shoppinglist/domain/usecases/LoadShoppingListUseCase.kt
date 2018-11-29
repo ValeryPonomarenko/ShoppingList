@@ -3,7 +3,7 @@ package me.vponomarenko.shoppinglist.domain.usecases
 import io.reactivex.Observable
 import io.reactivex.Scheduler
 import me.vponomarenko.shoppinglist.domain.api.ShoppingListRepository
-import me.vponomarenko.shoppinglist.domain.entity.ListItem
+import me.vponomarenko.shoppinglist.domain.entity.ShoppingListItem
 
 /**
  * Author: Valery Ponomarenko
@@ -16,7 +16,7 @@ class LoadShoppingListUseCase(
     private val uiScheduler: Scheduler,
     private val ioScheduler: Scheduler
 ) {
-    operator fun invoke(): Observable<List<ListItem>> =
+    operator fun invoke(): Observable<List<ShoppingListItem>> =
         repository.loadShoppingList()
             .subscribeOn(ioScheduler)
             .observeOn(uiScheduler)
