@@ -24,9 +24,14 @@ internal class FakeShoppingListDataSource @Inject constructor() : ShoppingListDa
     }
 
     override fun updateListItem(item: DataShoppingListItem): Completable {
-        val index = items.indexOf(item)
-        items.removeAt(index)
-        items.add(index, item)
+        val foundItem = items.findLast { it.title == item.title }
+        foundItem?.let {
+            items.indexOf(it).takeIf { it != -1 }?.let {index ->
+                items.removeAt(index)
+                items.add(index, item)
+            }
+        }
+        publisher.onNext(items)
         return Completable.complete()
     }
 }

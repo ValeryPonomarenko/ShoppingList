@@ -33,4 +33,5 @@ dependencies {
     implementation deps.viewmodel
     implementation deps.recyclerview
     implementation deps.rxjava
+    implementation deps.lottie
 }

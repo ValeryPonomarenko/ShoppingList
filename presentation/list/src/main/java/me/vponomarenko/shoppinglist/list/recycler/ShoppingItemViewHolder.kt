@@ -19,8 +19,12 @@ internal class ShoppingItemViewHolder(
     }
 
     fun onBind(item: ShoppingListItem) {
-        cb_item_name.text = item.title
-        cb_item_name.isChecked = item.isChecked
-        cb_item_name.setOnClickListener { onClickListener?.invoke(item) }
+        text_title.text = item.title
+        itemView.setOnClickListener { onClickListener?.invoke(item) }
+        if (item.isChecked) {
+            lottie_animation.playAnimation()
+        } else {
+            lottie_animation.progress = 0f
+        }
     }
 }

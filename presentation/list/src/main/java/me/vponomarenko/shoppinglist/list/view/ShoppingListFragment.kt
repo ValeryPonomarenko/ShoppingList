@@ -9,6 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
+import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.fragment_list.*
 import me.vponomarenko.injectionmanager.IHasComponent
@@ -48,6 +49,7 @@ class ShoppingListFragment : Fragment(), IHasComponent<ListComponent> {
         XInjectionManager.bindComponent(this).inject(this)
         super.onCreate(savedInstanceState)
         setHasOptionsMenu(true)
+        adapter.onClickListener = viewModel::onItemChecked
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? =
@@ -58,6 +60,7 @@ class ShoppingListFragment : Fragment(), IHasComponent<ListComponent> {
         recyclerView.apply {
             layoutManager = LinearLayoutManager(requireContext())
             adapter = this@ShoppingListFragment.adapter
+            (itemAnimator as? DefaultItemAnimator)?.supportsChangeAnimations = false
         }
         viewModel.viewState.observe(this) {
             when (it) {

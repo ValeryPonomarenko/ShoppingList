@@ -10,7 +10,7 @@ internal class ShoppingListAdapter : RecyclerView.Adapter<ShoppingItemViewHolder
 
     private var items = listOf<ShoppingListItem>()
 
-    private var onClickListener: OnItemClick? = null
+    var onClickListener: OnItemClick? = null
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) =
         ShoppingItemViewHolder.create(LayoutInflater.from(parent.context), parent, onClickListener)

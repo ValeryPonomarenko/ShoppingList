@@ -13,7 +13,7 @@ class ShoppingListItemDiffUtil(
     override fun getNewListSize() = new.size
 
     override fun areItemsTheSame(oldItemPosition: Int, newItemPosition: Int) =
-        old[oldItemPosition].title == new[newItemPosition].title
+        old[oldItemPosition] == new[newItemPosition]
 
     override fun areContentsTheSame(oldItemPosition: Int, newItemPosition: Int) =
         old[oldItemPosition] == new[newItemPosition]
