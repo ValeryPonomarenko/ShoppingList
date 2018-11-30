@@ -26,5 +26,7 @@ dependencies {
 
     implementation deps.kotlin
     implementation deps.dagger
+    kapt deps.daggercompiler
     implementation deps.viewmodel
+    implementation deps.rxjava
 }

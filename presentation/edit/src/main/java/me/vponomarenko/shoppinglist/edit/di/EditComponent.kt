@@ -14,13 +14,15 @@ import javax.inject.Singleton
 
 @Singleton
 @Component(
-    dependencies = [DomainDepsOut::class]
+    dependencies = [DomainDepsOut::class, EditComponentDepsIn::class],
+    modules = [EditModule::class]
 )
 interface EditComponent {
     companion object {
         fun init(): EditComponent =
             DaggerEditComponent.builder()
                 .domainDepsOut(XInjectionManager.findComponent())
+                .editComponentDepsIn(XInjectionManager.findComponent())
                 .build()
     }
     fun inject(fragment: EditFragment)

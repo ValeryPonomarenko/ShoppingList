@@ -18,7 +18,6 @@ import me.vponomarenko.shoppinglist.common.ViewModelFactory
 import me.vponomarenko.shoppinglist.common.extensions.observe
 import me.vponomarenko.shoppinglist.list.R
 import me.vponomarenko.shoppinglist.list.di.ListComponent
-import me.vponomarenko.shoppinglist.list.navigation.ShoppingListNavigation
 import me.vponomarenko.shoppinglist.list.recycler.ShoppingListAdapter
 import me.vponomarenko.shoppinglist.list.viewmodel.ShoppingListViewModel
 import me.vponomarenko.shoppinglist.list.viewstate.ShoppingListViewState
@@ -31,9 +30,6 @@ import javax.inject.Inject
  */
 
 class ShoppingListFragment : Fragment(), IHasComponent<ListComponent> {
-
-    @Inject
-    internal lateinit var navigation: ShoppingListNavigation
 
     @Inject
     internal lateinit var adapter: ShoppingListAdapter
@@ -83,7 +79,7 @@ class ShoppingListFragment : Fragment(), IHasComponent<ListComponent> {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             R.id.option_edit -> {
-                navigation.navigateToEdit()
+                viewModel.onEditClick()
                 true
             }
             else -> super.onOptionsItemSelected(item)

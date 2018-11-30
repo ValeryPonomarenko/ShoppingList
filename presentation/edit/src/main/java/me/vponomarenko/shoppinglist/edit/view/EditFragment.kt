@@ -8,12 +8,14 @@ import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProviders
 import kotlinx.android.synthetic.main.fragment_edit.*
 import me.vponomarenko.injectionmanager.IHasComponent
 import me.vponomarenko.injectionmanager.x.XInjectionManager
-import me.vponomarenko.shoppinglist.domain.usecases.SaveShoppingListUseCase
+import me.vponomarenko.shoppinglist.common.ViewModelFactory
 import me.vponomarenko.shoppinglist.edit.R
 import me.vponomarenko.shoppinglist.edit.di.EditComponent
+import me.vponomarenko.shoppinglist.edit.viewmodel.EditViewModel
 import javax.inject.Inject
 
 /**
@@ -25,7 +27,11 @@ import javax.inject.Inject
 class EditFragment : Fragment(), IHasComponent<EditComponent> {
 
     @Inject
-    internal lateinit var saveUseCase: SaveShoppingListUseCase
+    internal lateinit var viewModelFactory: ViewModelFactory
+
+    private val viewModel by lazy {
+        ViewModelProviders.of(this, viewModelFactory).get(EditViewModel::class.java)
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         XInjectionManager.bindComponent(this).inject(this)
@@ -44,7 +50,7 @@ class EditFragment : Fragment(), IHasComponent<EditComponent> {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             R.id.option_save -> {
-                saveUseCase(editText_list.text.toString())
+                viewModel.save(editText_list.text.toString())
                 true
             }
             else -> super.onOptionsItemSelected(item)

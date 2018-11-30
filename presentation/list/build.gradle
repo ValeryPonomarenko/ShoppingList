@@ -23,7 +23,7 @@ android {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation appmodules.domain
-    implementation appmodules.presentation.common
+    api appmodules.presentation.common
 
     implementation deps.kotlin
     implementation deps.appcompat
