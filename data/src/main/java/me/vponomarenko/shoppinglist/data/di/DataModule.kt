@@ -1,9 +1,10 @@
 package me.vponomarenko.shoppinglist.data.di
 
-import dagger.Binds
+import com.google.firebase.database.FirebaseDatabase
 import dagger.Module
+import dagger.Provides
 import me.vponomarenko.shoppinglist.data.ShoppingListRepositoryImpl
-import me.vponomarenko.shoppinglist.data.datasources.FakeShoppingListDataSource
+import me.vponomarenko.shoppinglist.data.datasources.FirebaseDbDataSource
 import me.vponomarenko.shoppinglist.data.datasources.ShoppingListDataSource
 import me.vponomarenko.shoppinglist.domain.api.ShoppingListRepository
 import javax.inject.Singleton
@@ -15,12 +16,16 @@ import javax.inject.Singleton
  */
 
 @Module
-internal interface DataModule {
+internal class DataModule {
     @Singleton
-    @Binds
-    fun provideRepository(repository: ShoppingListRepositoryImpl): ShoppingListRepository
+    @Provides
+    fun provideFirestore(): FirebaseDatabase = FirebaseDatabase.getInstance()
 
     @Singleton
-    @Binds
-    fun provideDataSource(fakeDataSource: FakeShoppingListDataSource): ShoppingListDataSource
+    @Provides
+    fun provideRepository(repository: ShoppingListRepositoryImpl): ShoppingListRepository = repository
+
+    @Singleton
+    @Provides
+    fun provideDataSource(firebaseDbDataSource: FirebaseDbDataSource): ShoppingListDataSource = firebaseDbDataSource
 }
