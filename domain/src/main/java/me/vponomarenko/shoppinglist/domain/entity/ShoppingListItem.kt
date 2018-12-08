@@ -7,6 +7,7 @@ package me.vponomarenko.shoppinglist.domain.entity
  */
 
 data class ShoppingListItem(
+    val id: Int,
     val title: String,
     val isChecked: Boolean
 )

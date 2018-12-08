@@ -1,9 +1,10 @@
 package me.vponomarenko.shoppinglist.data.data
 
-import me.vponomarenko.shoppinglist.domain.entity.ShoppingListItem
+import com.google.firebase.database.Exclude
 
-internal data class DataShoppingListItem(val title: String, val checked: Boolean) {
-    constructor(shoppingListItem: ShoppingListItem) : this(shoppingListItem.title, shoppingListItem.isChecked)
-
-    fun toShoppingListItem() = ShoppingListItem(title, checked)
-}
+internal data class DataShoppingListItem(
+    @Exclude
+    val id: Int = -1,
+    val title: String = "",
+    val checked: Boolean = false
+)

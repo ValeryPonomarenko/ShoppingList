@@ -21,7 +21,10 @@ class SaveShoppingListUseCase(
     }
 
     operator fun invoke(list: String): Completable =
-        repository.saveShoppingList(list.split(LIST_DELIMITER).map { ShoppingListItem(it, false) })
+        repository
+            .saveShoppingList(
+                list.split(LIST_DELIMITER).map { ShoppingListItem(0, it, false) }
+            )
             .subscribeOn(ioScheduler)
             .observeOn(uiScheduler)
 }

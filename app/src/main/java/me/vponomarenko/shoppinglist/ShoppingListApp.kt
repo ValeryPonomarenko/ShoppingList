@@ -1,6 +1,7 @@
 package me.vponomarenko.shoppinglist
 
 import android.app.Application
+import com.google.firebase.FirebaseApp
 import me.vponomarenko.injectionmanager.IHasComponent
 import me.vponomarenko.injectionmanager.x.XInjectionManager
 import me.vponomarenko.shoppinglist.data.di.DaggerDataComponent
@@ -19,6 +20,7 @@ class ShoppingListApp : Application(), IHasComponent<AppComponent> {
 
     override fun onCreate() {
         super.onCreate()
+        FirebaseApp.initializeApp(this)
         XInjectionManager.init(this)
         initAppComponents()
     }

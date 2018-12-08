@@ -2,8 +2,8 @@ package me.vponomarenko.shoppinglist.data
 
 import io.reactivex.Completable
 import io.reactivex.Observable
-import me.vponomarenko.shoppinglist.data.data.DataShoppingListItem
 import me.vponomarenko.shoppinglist.data.datasources.ShoppingListDataSource
+import me.vponomarenko.shoppinglist.data.mappers.DataShoppingListItemMapper
 import me.vponomarenko.shoppinglist.domain.api.ShoppingListRepository
 import me.vponomarenko.shoppinglist.domain.entity.ShoppingListItem
 import javax.inject.Inject
@@ -15,14 +15,15 @@ import javax.inject.Inject
  */
 
 internal class ShoppingListRepositoryImpl @Inject constructor(
-    private val dataSource: ShoppingListDataSource
+    private val dataSource: ShoppingListDataSource,
+    private val dataShoppingListItemMapper: DataShoppingListItemMapper
 ) : ShoppingListRepository {
     override fun loadShoppingList(): Observable<List<ShoppingListItem>> =
-        dataSource.loadShoppingList().map { items -> items.map { it.toShoppingListItem() } }
+        dataSource.loadShoppingList().map(dataShoppingListItemMapper::mapToList)
 
     override fun saveShoppingList(list: List<ShoppingListItem>): Completable =
-        dataSource.saveShoppingList(list.map { DataShoppingListItem(it) })
+        dataSource.saveShoppingList(dataShoppingListItemMapper.createFromList(list))
 
     override fun updateListItem(item: ShoppingListItem): Completable =
-        dataSource.updateListItem(DataShoppingListItem(item))
+        dataSource.updateListItem(dataShoppingListItemMapper.createFrom(item))
 }

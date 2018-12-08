@@ -6,6 +6,8 @@ import dagger.Provides
 import me.vponomarenko.shoppinglist.data.ShoppingListRepositoryImpl
 import me.vponomarenko.shoppinglist.data.datasources.FirebaseDbDataSource
 import me.vponomarenko.shoppinglist.data.datasources.ShoppingListDataSource
+import me.vponomarenko.shoppinglist.data.mappers.DataShoppingListItemMapper
+import me.vponomarenko.shoppinglist.data.mappers.FirebaseMapper
 import me.vponomarenko.shoppinglist.domain.api.ShoppingListRepository
 import javax.inject.Singleton
 
@@ -19,7 +21,7 @@ import javax.inject.Singleton
 internal class DataModule {
     @Singleton
     @Provides
-    fun provideFirestore(): FirebaseDatabase = FirebaseDatabase.getInstance()
+    fun provideFirebase(): FirebaseDatabase = FirebaseDatabase.getInstance()
 
     @Singleton
     @Provides
@@ -28,4 +30,12 @@ internal class DataModule {
     @Singleton
     @Provides
     fun provideDataSource(firebaseDbDataSource: FirebaseDbDataSource): ShoppingListDataSource = firebaseDbDataSource
+
+    @Singleton
+    @Provides
+    fun provideFirebaseMapper(): FirebaseMapper = FirebaseMapper()
+
+    @Singleton
+    @Provides
+    fun provideDataShoppingListItemMapper(): DataShoppingListItemMapper = DataShoppingListItemMapper()
 }
