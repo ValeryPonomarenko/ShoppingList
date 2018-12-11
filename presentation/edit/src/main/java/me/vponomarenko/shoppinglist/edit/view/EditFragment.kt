@@ -16,6 +16,7 @@ import me.vponomarenko.shoppinglist.common.ViewModelFactory
 import me.vponomarenko.shoppinglist.common.extensions.makeGone
 import me.vponomarenko.shoppinglist.common.extensions.makeVisible
 import me.vponomarenko.shoppinglist.common.extensions.observe
+import me.vponomarenko.shoppinglist.common.extensions.showSnack
 import me.vponomarenko.shoppinglist.edit.R
 import me.vponomarenko.shoppinglist.edit.di.EditComponent
 import me.vponomarenko.shoppinglist.edit.viewmodel.EditViewModel
@@ -55,7 +56,10 @@ class EditFragment : Fragment(), IHasComponent<EditComponent> {
                     progress_edit.makeGone()
                     editText_list.setText(it.items)
                 }
-                is EditViewState.Error -> progress_edit.makeGone()
+                is EditViewState.Error -> {
+                    progress_edit.makeGone()
+                    view.showSnack(it.message, errorAction = it.errorAction)
+                }
             }
         }
     }

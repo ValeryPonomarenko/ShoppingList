@@ -27,6 +27,7 @@ dependencies {
 
     implementation deps.kotlin
     implementation deps.appcompat
+    implementation deps.material
     implementation deps.componentsmanager
     implementation deps.dagger
     kapt deps.daggercompiler

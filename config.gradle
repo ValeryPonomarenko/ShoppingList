@@ -9,6 +9,7 @@ def viewmodel_version = "2.0.0"
 def recyclerview_version = "1.0.0-rc01"
 def lottie_version = "2.8.0"
 def realtime_db_version = "16.0.5"
+def material_version = "1.0.0-rc01"
 
 ext.deps = [
         kotlin           : "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version",
@@ -24,7 +25,8 @@ ext.deps = [
         viewmodel        : "androidx.lifecycle:lifecycle-extensions:$viewmodel_version",
         recyclerview     : "androidx.recyclerview:recyclerview:$recyclerview_version",
         lottie           : "com.airbnb.android:lottie:$lottie_version",
-        firebasedb       : "com.google.firebase:firebase-database:$realtime_db_version"
+        firebasedb       : "com.google.firebase:firebase-database:$realtime_db_version",
+        material         : "com.google.android.material:material:$material_version"
 ]
 
 ext.appmodules = [
