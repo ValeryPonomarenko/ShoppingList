@@ -13,9 +13,13 @@ import kotlinx.android.synthetic.main.fragment_edit.*
 import me.vponomarenko.injectionmanager.IHasComponent
 import me.vponomarenko.injectionmanager.x.XInjectionManager
 import me.vponomarenko.shoppinglist.common.ViewModelFactory
+import me.vponomarenko.shoppinglist.common.extensions.makeGone
+import me.vponomarenko.shoppinglist.common.extensions.makeVisible
+import me.vponomarenko.shoppinglist.common.extensions.observe
 import me.vponomarenko.shoppinglist.edit.R
 import me.vponomarenko.shoppinglist.edit.di.EditComponent
 import me.vponomarenko.shoppinglist.edit.viewmodel.EditViewModel
+import me.vponomarenko.shoppinglist.edit.viewstate.EditViewState
 import javax.inject.Inject
 
 /**
@@ -41,6 +45,20 @@ class EditFragment : Fragment(), IHasComponent<EditComponent> {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? =
         inflater.inflate(R.layout.fragment_edit, container, false)
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        viewModel.viewState.observe(this) {
+            when (it) {
+                is EditViewState.Loading -> progress_edit.makeVisible()
+                is EditViewState.Loaded -> {
+                    progress_edit.makeGone()
+                    editText_list.setText(it.items)
+                }
+                is EditViewState.Error -> progress_edit.makeGone()
+            }
+        }
+    }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         inflater.inflate(R.menu.menu_edit, menu)
