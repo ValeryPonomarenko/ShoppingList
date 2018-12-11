@@ -15,7 +15,10 @@ import kotlinx.android.synthetic.main.fragment_list.*
 import me.vponomarenko.injectionmanager.IHasComponent
 import me.vponomarenko.injectionmanager.x.XInjectionManager
 import me.vponomarenko.shoppinglist.common.ViewModelFactory
+import me.vponomarenko.shoppinglist.common.extensions.makeGone
+import me.vponomarenko.shoppinglist.common.extensions.makeVisible
 import me.vponomarenko.shoppinglist.common.extensions.observe
+import me.vponomarenko.shoppinglist.common.extensions.showSnack
 import me.vponomarenko.shoppinglist.list.R
 import me.vponomarenko.shoppinglist.list.di.ListComponent
 import me.vponomarenko.shoppinglist.list.recycler.ShoppingListAdapter
@@ -60,13 +63,15 @@ class ShoppingListFragment : Fragment(), IHasComponent<ListComponent> {
         }
         viewModel.viewState.observe(this) {
             when (it) {
-                is ShoppingListViewState.Loading -> {
-
-                }
+                is ShoppingListViewState.Loading -> progress_list.makeVisible()
                 is ShoppingListViewState.Loaded -> {
+                    progress_list.makeGone()
                     adapter.update(it.items)
                 }
-                is ShoppingListViewState.Error -> {}
+                is ShoppingListViewState.Error -> {
+                    progress_list.makeGone()
+                    view.showSnack(it.message, errorAction = it.errorAction)
+                }
             }
         }
     }
