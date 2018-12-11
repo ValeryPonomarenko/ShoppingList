@@ -11,7 +11,7 @@
         android:layout_height="?attr/actionBarSize"
         android:background="?attr/colorPrimary"
         android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
-        app:elevation="4dp"
+        android:stateListAnimator="@animator/toolbar_elevation"
         tools:title="@string/app_name" />
 
     <fragment

@@ -15,6 +15,9 @@ class MainActivity : AppCompatActivity() {
     @Inject
     internal lateinit var navigationFacade: BindableNavigation
 
+    @Inject
+    internal lateinit var toolbarElevationMover: ToolbarElevationMover
+
     private val navController by lazy { findNavController(R.id.nav_host_fragment) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -28,10 +31,12 @@ class MainActivity : AppCompatActivity() {
     override fun onResume() {
         super.onResume()
         navigationFacade.bind(navController)
+        toolbarElevationMover.bind(toolbar)
     }
 
     override fun onPause() {
         super.onPause()
         navigationFacade.unbind()
+        toolbarElevationMover.unbind()
     }
 }

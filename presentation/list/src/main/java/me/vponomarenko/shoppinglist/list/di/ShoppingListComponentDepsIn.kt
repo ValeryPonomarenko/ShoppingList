@@ -1,5 +1,6 @@
 package me.vponomarenko.shoppinglist.list.di
 
+import me.vponomarenko.shoppinglist.common.ToolbarElevationHelper
 import me.vponomarenko.shoppinglist.list.navigation.ShoppingListNavigation
 
 /**
@@ -10,4 +11,5 @@ import me.vponomarenko.shoppinglist.list.navigation.ShoppingListNavigation
 
 interface ShoppingListComponentDepsIn {
     fun provideShoppingListNavigation(): ShoppingListNavigation
+    fun provideToolbarElevationHelper(): ToolbarElevationHelper
 }
