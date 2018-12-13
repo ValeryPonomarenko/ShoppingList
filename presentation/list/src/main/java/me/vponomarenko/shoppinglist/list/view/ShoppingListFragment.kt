@@ -9,7 +9,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
-import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.fragment_list.*
 import me.vponomarenko.injectionmanager.IHasComponent
@@ -22,6 +21,7 @@ import me.vponomarenko.shoppinglist.common.extensions.observe
 import me.vponomarenko.shoppinglist.common.extensions.showSnack
 import me.vponomarenko.shoppinglist.list.R
 import me.vponomarenko.shoppinglist.list.di.ListComponent
+import me.vponomarenko.shoppinglist.list.recycler.ShoppingItemAnimator
 import me.vponomarenko.shoppinglist.list.recycler.ShoppingListAdapter
 import me.vponomarenko.shoppinglist.list.viewmodel.ShoppingListViewModel
 import me.vponomarenko.shoppinglist.list.viewstate.ShoppingListViewState
@@ -63,7 +63,7 @@ class ShoppingListFragment : Fragment(), IHasComponent<ListComponent> {
         recyclerView.apply {
             layoutManager = LinearLayoutManager(requireContext())
             adapter = this@ShoppingListFragment.adapter
-            (itemAnimator as? DefaultItemAnimator)?.supportsChangeAnimations = false
+            itemAnimator = ShoppingItemAnimator()
             toolbarElevationSetter.setWith(this)
         }
         viewModel.viewState.observe(this) {

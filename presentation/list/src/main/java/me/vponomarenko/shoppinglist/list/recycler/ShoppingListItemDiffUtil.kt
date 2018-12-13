@@ -13,8 +13,9 @@ class ShoppingListItemDiffUtil(
     override fun getNewListSize() = new.size
 
     override fun areItemsTheSame(oldItemPosition: Int, newItemPosition: Int) =
-        old[oldItemPosition] == new[newItemPosition]
+        old[oldItemPosition].title == new[newItemPosition].title
 
     override fun areContentsTheSame(oldItemPosition: Int, newItemPosition: Int) =
-        old[oldItemPosition] == new[newItemPosition]
+        old[oldItemPosition].isChecked == new[newItemPosition].isChecked &&
+            old[oldItemPosition].title == new[newItemPosition].title
 }
