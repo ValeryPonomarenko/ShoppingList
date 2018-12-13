@@ -1,7 +1,7 @@
 package me.vponomarenko.shoppinglist
 
 import android.view.View
-import me.vponomarenko.shoppinglist.common.ToolbarElevationHelper
+import me.vponomarenko.shoppinglist.common.appearance.toolbarelevation.ToolbarElevationShower
 
 /**
  * Author: Valery Ponomarenko
@@ -9,7 +9,7 @@ import me.vponomarenko.shoppinglist.common.ToolbarElevationHelper
  * LinkedIn: https://www.linkedin.com/in/ponomarenkovalery
  */
 
-class ToolbarElevationMover : ToolbarElevationHelper {
+class ToolbarElevationMover : ToolbarElevationShower {
 
     private var toolbar: View? = null
 

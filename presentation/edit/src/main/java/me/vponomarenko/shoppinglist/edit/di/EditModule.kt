@@ -5,9 +5,10 @@ import dagger.Binds
 import dagger.Module
 import dagger.multibindings.IntoMap
 import me.vponomarenko.shoppinglist.common.ViewModelKey
+import me.vponomarenko.shoppinglist.common.di.ToolbarElevationModule
 import me.vponomarenko.shoppinglist.edit.viewmodel.EditViewModel
 
-@Module
+@Module(includes = [ToolbarElevationModule::class])
 internal abstract class EditModule {
     @Binds
     @IntoMap

@@ -5,11 +5,12 @@ import dagger.Module
 import dagger.Provides
 import dagger.multibindings.IntoMap
 import me.vponomarenko.shoppinglist.common.ViewModelKey
+import me.vponomarenko.shoppinglist.common.di.ToolbarElevationModule
 import me.vponomarenko.shoppinglist.list.recycler.ShoppingListAdapter
 import me.vponomarenko.shoppinglist.list.viewmodel.ShoppingListViewModel
 import javax.inject.Singleton
 
-@Module
+@Module(includes = [ToolbarElevationModule::class])
 internal class ListModule {
     @Singleton
     @Provides

@@ -1,6 +1,5 @@
 package me.vponomarenko.shoppinglist.list.view
 
-import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.Menu
@@ -15,8 +14,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.fragment_list.*
 import me.vponomarenko.injectionmanager.IHasComponent
 import me.vponomarenko.injectionmanager.x.XInjectionManager
-import me.vponomarenko.shoppinglist.common.ToolbarElevationHelper
 import me.vponomarenko.shoppinglist.common.ViewModelFactory
+import me.vponomarenko.shoppinglist.common.appearance.toolbarelevation.ToolbarElevationSetter
 import me.vponomarenko.shoppinglist.common.extensions.makeGone
 import me.vponomarenko.shoppinglist.common.extensions.makeVisible
 import me.vponomarenko.shoppinglist.common.extensions.observe
@@ -36,18 +35,14 @@ import javax.inject.Inject
 
 class ShoppingListFragment : Fragment(), IHasComponent<ListComponent> {
 
-    companion object {
-        private const val SCROLL_UPWARD = -1
-    }
-
     @Inject
     internal lateinit var adapter: ShoppingListAdapter
 
     @Inject
     internal lateinit var viewModelFactory: ViewModelFactory
-    
+
     @Inject
-    internal lateinit var toolbarElevationHelper: ToolbarElevationHelper
+    internal lateinit var toolbarElevationSetter: ToolbarElevationSetter
 
     private val viewModel by lazy {
         ViewModelProviders.of(this, viewModelFactory).get(ShoppingListViewModel::class.java)
@@ -69,11 +64,7 @@ class ShoppingListFragment : Fragment(), IHasComponent<ListComponent> {
             layoutManager = LinearLayoutManager(requireContext())
             adapter = this@ShoppingListFragment.adapter
             (itemAnimator as? DefaultItemAnimator)?.supportsChangeAnimations = false
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                setOnScrollChangeListener { _, _, _, _, _ ->
-                    toolbarElevationHelper.showElevation(canScrollVertically(SCROLL_UPWARD))
-                }
-            }
+            toolbarElevationSetter.setWith(this)
         }
         viewModel.viewState.observe(this) {
             when (it) {

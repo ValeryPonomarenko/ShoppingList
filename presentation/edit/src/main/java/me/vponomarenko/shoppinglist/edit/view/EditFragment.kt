@@ -1,6 +1,5 @@
 package me.vponomarenko.shoppinglist.edit.view
 
-import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.Menu
@@ -13,12 +12,12 @@ import androidx.lifecycle.ViewModelProviders
 import kotlinx.android.synthetic.main.fragment_edit.*
 import me.vponomarenko.injectionmanager.IHasComponent
 import me.vponomarenko.injectionmanager.x.XInjectionManager
-import me.vponomarenko.shoppinglist.common.ToolbarElevationHelper
 import me.vponomarenko.shoppinglist.common.ViewModelFactory
 import me.vponomarenko.shoppinglist.common.extensions.makeGone
 import me.vponomarenko.shoppinglist.common.extensions.makeVisible
 import me.vponomarenko.shoppinglist.common.extensions.observe
 import me.vponomarenko.shoppinglist.common.extensions.showSnack
+import me.vponomarenko.shoppinglist.common.appearance.toolbarelevation.ToolbarElevationSetter
 import me.vponomarenko.shoppinglist.edit.R
 import me.vponomarenko.shoppinglist.edit.di.EditComponent
 import me.vponomarenko.shoppinglist.edit.viewmodel.EditViewModel
@@ -33,15 +32,11 @@ import javax.inject.Inject
 
 class EditFragment : Fragment(), IHasComponent<EditComponent> {
 
-    companion object {
-        private const val SCROLL_UPWARD = -1
-    }
-
     @Inject
     internal lateinit var viewModelFactory: ViewModelFactory
 
     @Inject
-    internal lateinit var toolbarElevationHelper: ToolbarElevationHelper
+    internal lateinit var toolbarElevationSetter: ToolbarElevationSetter
 
     private val viewModel by lazy {
         ViewModelProviders.of(this, viewModelFactory).get(EditViewModel::class.java)
@@ -71,11 +66,7 @@ class EditFragment : Fragment(), IHasComponent<EditComponent> {
                 }
             }
         }
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            editText_list.setOnScrollChangeListener { _, _, _, _, _ ->
-                toolbarElevationHelper.showElevation(editText_list.canScrollVertically(SCROLL_UPWARD))
-            }
-        }
+        toolbarElevationSetter.setWith(editText_list)
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {

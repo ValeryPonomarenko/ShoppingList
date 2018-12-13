@@ -6,7 +6,7 @@ import io.reactivex.Scheduler
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import me.vponomarenko.shoppinglist.ToolbarElevationMover
-import me.vponomarenko.shoppinglist.common.ToolbarElevationHelper
+import me.vponomarenko.shoppinglist.common.appearance.toolbarelevation.ToolbarElevationShower
 import me.vponomarenko.shoppinglist.domain.di.qualifiers.IoScheduler
 import me.vponomarenko.shoppinglist.domain.di.qualifiers.UiScheduler
 import me.vponomarenko.shoppinglist.edit.navigation.EditNavigation
@@ -55,5 +55,5 @@ internal class AppModule {
 
     @Singleton
     @Provides
-    fun provideToolbarElevationHelper(mover: ToolbarElevationMover): ToolbarElevationHelper = mover
+    fun provideToolbarElevationHelper(mover: ToolbarElevationMover): ToolbarElevationShower = mover
 }

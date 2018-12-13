@@ -1,4 +1,4 @@
-package me.vponomarenko.shoppinglist.common
+package me.vponomarenko.shoppinglist.common.appearance.toolbarelevation
 
 /**
  * Author: Valery Ponomarenko
@@ -6,6 +6,6 @@ package me.vponomarenko.shoppinglist.common
  * LinkedIn: https://www.linkedin.com/in/ponomarenkovalery
  */
 
-interface ToolbarElevationHelper {
+interface ToolbarElevationShower {
     fun showElevation(isShown: Boolean)
 }
