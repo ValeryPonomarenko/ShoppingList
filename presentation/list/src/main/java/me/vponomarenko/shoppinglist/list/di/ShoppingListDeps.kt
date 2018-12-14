@@ -1,6 +1,6 @@
 package me.vponomarenko.shoppinglist.list.di
 
-import me.vponomarenko.shoppinglist.common.appearance.toolbarelevation.ToolbarElevationShower
+import me.vponomarenko.shoppinglist.common.appearance.toolbarelevation.ToolbarElevationToggler
 import me.vponomarenko.shoppinglist.list.navigation.ShoppingListNavigation
 
 /**
@@ -9,7 +9,7 @@ import me.vponomarenko.shoppinglist.list.navigation.ShoppingListNavigation
  * LinkedIn: https://www.linkedin.com/in/ponomarenkovalery
  */
 
-interface ShoppingListComponentDepsIn {
+interface ShoppingListDeps {
     fun provideShoppingListNavigation(): ShoppingListNavigation
-    fun provideToolbarElevationHelper(): ToolbarElevationShower
+    fun provideToolbarElevationHelper(): ToolbarElevationToggler
 }

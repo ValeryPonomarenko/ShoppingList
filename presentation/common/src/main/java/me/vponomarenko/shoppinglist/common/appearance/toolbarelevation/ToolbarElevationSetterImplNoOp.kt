@@ -13,6 +13,6 @@ class ToolbarElevationSetterImplNoOp @Inject constructor():
     ToolbarElevationSetter {
 
     override fun setWith(scrollableView: View) {
-        //No op, because
+        //No op
     }
 }

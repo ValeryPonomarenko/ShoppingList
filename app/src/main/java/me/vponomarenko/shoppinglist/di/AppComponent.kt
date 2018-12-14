@@ -2,9 +2,9 @@ package me.vponomarenko.shoppinglist.di
 
 import dagger.Component
 import me.vponomarenko.shoppinglist.MainActivity
-import me.vponomarenko.shoppinglist.domain.di.DomainSchedulersDepsIn
-import me.vponomarenko.shoppinglist.edit.di.EditComponentDepsIn
-import me.vponomarenko.shoppinglist.list.di.ShoppingListComponentDepsIn
+import me.vponomarenko.shoppinglist.domain.di.DomainSchedulersDeps
+import me.vponomarenko.shoppinglist.edit.di.EditDeps
+import me.vponomarenko.shoppinglist.list.di.ShoppingListDeps
 import javax.inject.Singleton
 
 /**
@@ -17,7 +17,7 @@ import javax.inject.Singleton
 @Component(
     modules = [AppModule::class]
 )
-interface AppComponent : DomainSchedulersDepsIn, ShoppingListComponentDepsIn, EditComponentDepsIn {
+interface AppComponent : DomainSchedulersDeps, ShoppingListDeps, EditDeps {
     companion object {
         fun init(): AppComponent = DaggerAppComponent.create()
     }

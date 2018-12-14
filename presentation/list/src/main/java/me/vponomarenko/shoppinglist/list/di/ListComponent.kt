@@ -2,7 +2,7 @@ package me.vponomarenko.shoppinglist.list.di
 
 import dagger.Component
 import me.vponomarenko.injectionmanager.x.XInjectionManager
-import me.vponomarenko.shoppinglist.domain.di.DomainDepsOut
+import me.vponomarenko.shoppinglist.domain.di.DomainApi
 import me.vponomarenko.shoppinglist.list.view.ShoppingListFragment
 import javax.inject.Singleton
 
@@ -14,15 +14,15 @@ import javax.inject.Singleton
 
 @Singleton
 @Component(
-    dependencies = [ShoppingListComponentDepsIn::class, DomainDepsOut::class],
+    dependencies = [ShoppingListDeps::class, DomainApi::class],
     modules = [ListModule::class]
 )
 interface ListComponent {
     companion object {
         fun init(): ListComponent =
             DaggerListComponent.builder()
-                .shoppingListComponentDepsIn(XInjectionManager.findComponent())
-                .domainDepsOut(XInjectionManager.findComponent())
+                .shoppingListDeps(XInjectionManager.findComponent())
+                .domainApi(XInjectionManager.findComponent())
                 .build()
     }
 

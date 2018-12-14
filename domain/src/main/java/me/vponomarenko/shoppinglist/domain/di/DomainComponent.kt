@@ -11,7 +11,7 @@ import javax.inject.Singleton
 
 @Singleton
 @Component(
-    dependencies = [DomainDataDepsIn::class, DomainSchedulersDepsIn::class],
+    dependencies = [DomainDataDeps::class, DomainSchedulersDeps::class],
     modules = [DomainModule::class]
 )
-interface DomainComponent: DomainDepsOut
+interface DomainComponent: DomainApi

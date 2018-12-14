@@ -12,7 +12,7 @@ import javax.inject.Inject
  */
 
 class ToolbarElevationSetterImplV23 @Inject constructor(
-    private val toolbarElevationShower: ToolbarElevationShower
+    private val toolbarElevationShower: ToolbarElevationToggler
 ): ToolbarElevationSetter {
 
     companion object {

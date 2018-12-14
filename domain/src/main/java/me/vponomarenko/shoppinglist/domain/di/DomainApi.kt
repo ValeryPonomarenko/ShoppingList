@@ -10,7 +10,7 @@ import me.vponomarenko.shoppinglist.domain.usecases.UpdateListItemUseCase
  * LinkedIn: https://www.linkedin.com/in/ponomarenkovalery
  */
 
-interface DomainDepsOut {
+interface DomainApi {
     fun provideLoadUseCase(): LoadShoppingListUseCase
     fun provideSaveUseCase(): SaveShoppingListUseCase
     fun provideUpdateUseCase(): UpdateListItemUseCase

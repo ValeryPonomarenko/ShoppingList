@@ -6,6 +6,6 @@ package me.vponomarenko.shoppinglist.common.appearance.toolbarelevation
  * LinkedIn: https://www.linkedin.com/in/ponomarenkovalery
  */
 
-interface ToolbarElevationShower {
+interface ToolbarElevationToggler {
     fun showElevation(isShown: Boolean)
 }

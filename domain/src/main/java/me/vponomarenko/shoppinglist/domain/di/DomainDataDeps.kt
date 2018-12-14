@@ -8,6 +8,6 @@ import me.vponomarenko.shoppinglist.domain.api.ShoppingListRepository
  * LinkedIn: https://www.linkedin.com/in/ponomarenkovalery
  */
 
-interface DomainDataDepsIn {
+interface DomainDataDeps {
     fun provideRepository(): ShoppingListRepository
 }

@@ -10,7 +10,7 @@ import me.vponomarenko.shoppinglist.domain.di.qualifiers.UiScheduler
  * LinkedIn: https://www.linkedin.com/in/ponomarenkovalery
  */
 
-interface DomainSchedulersDepsIn {
+interface DomainSchedulersDeps {
     @UiScheduler
     fun provideUiScheduler(): Scheduler
     @IoScheduler

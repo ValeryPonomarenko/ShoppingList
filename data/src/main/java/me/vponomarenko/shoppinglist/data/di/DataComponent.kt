@@ -1,7 +1,7 @@
 package me.vponomarenko.shoppinglist.data.di
 
 import dagger.Component
-import me.vponomarenko.shoppinglist.domain.di.DomainDataDepsIn
+import me.vponomarenko.shoppinglist.domain.di.DomainDataDeps
 import javax.inject.Singleton
 
 /**
@@ -12,4 +12,4 @@ import javax.inject.Singleton
 
 @Singleton
 @Component(modules = [DataModule::class])
-interface DataComponent : DomainDataDepsIn
+interface DataComponent : DomainDataDeps

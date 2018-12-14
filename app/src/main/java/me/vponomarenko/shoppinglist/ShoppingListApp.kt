@@ -36,8 +36,8 @@ class ShoppingListApp : Application(), IHasComponent<AppComponent> {
             bindComponentToCustomLifecycle(object : IHasComponent<DomainComponent> {
                 override fun getComponent(): DomainComponent =
                     DaggerDomainComponent.builder()
-                        .domainDataDepsIn(XInjectionManager.findComponent())
-                        .domainSchedulersDepsIn(XInjectionManager.findComponent())
+                        .domainDataDeps(XInjectionManager.findComponent())
+                        .domainSchedulersDeps(XInjectionManager.findComponent())
                         .build()
             })
         }
