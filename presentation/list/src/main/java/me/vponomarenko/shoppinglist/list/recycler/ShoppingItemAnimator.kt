@@ -2,7 +2,7 @@ package me.vponomarenko.shoppinglist.list.recycler
 
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.RecyclerView
-import kotlinx.android.synthetic.main.item_list.view.*
+import kotlinx.android.synthetic.main.item_list.*
 
 /**
  * Author: Valery Ponomarenko
@@ -23,10 +23,11 @@ class ShoppingItemAnimator : DefaultItemAnimator() {
         postInfo: ItemHolderInfo
     ): Boolean {
         if (newHolder is ShoppingItemViewHolder) {
+            newHolder.lottie_animation.cancelAnimation()
             if (newHolder.isChecked) {
-                newHolder.itemView.lottie_animation.playAnimation()
+                newHolder.lottie_animation.playAnimation()
             } else {
-                newHolder.itemView.lottie_animation.progress = 0f
+                newHolder.lottie_animation.progress = 0f
             }
             return false
         }
