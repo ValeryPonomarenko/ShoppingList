@@ -1,3 +1,4 @@
 <resources>
+    <string name="list_screen_name">Shopping list</string>
     <string name="edit">Edit</string>
 </resources>

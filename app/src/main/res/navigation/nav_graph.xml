@@ -6,7 +6,7 @@
     <fragment
         android:id="@+id/shoppingListFragment"
         android:name="me.vponomarenko.shoppinglist.list.view.ShoppingListFragment"
-        android:label="ShoppingListFragment" >
+        android:label="@string/list_screen_name" >
         <action
             android:id="@+id/action_shoppingListFragment_to_editFragment"
             app:destination="@id/editFragment"
@@ -18,5 +18,5 @@
     <fragment
         android:id="@+id/editFragment"
         android:name="me.vponomarenko.shoppinglist.edit.view.EditFragment"
-        android:label="EditFragment" />
+        android:label="@string/edit_screen_name" />
 </navigation>
