@@ -42,5 +42,5 @@ ext.appmodules = [
 ext.versions = [
         targetSdkVersion: 28,
         minSdkVersion   : 19,
-        versionName     : "0.0.1"
+        versionName     : "1.0.0"
 ]
