@@ -1,0 +1,65 @@
+version: 2
+
+defaults: &defaults
+  docker:
+    - image: circleci/android:api-28-alpha
+  environment:
+    JVM_OPTS: -Xmx3200m
+
+jobs:
+  unit-tests:
+    <<: *defaults
+    steps:
+      - checkout
+      - restore_cache:
+          key: jars-{{ checksum "build.gradle" }}-{{ checksum  "app/build.gradle" }}
+      - run:
+          name: Build the debug version
+          command: ./gradlew assembleDebug
+      - save_cache:
+          paths:
+            - ~/.gradle
+          key: jars-{{ checksum "build.gradle" }}-{{ checksum  "app/build.gradle" }}
+
+  deploy-internal:
+    <<: *defaults
+    steps:
+      - checkout
+      - restore_cache:
+          key: jars-{{ checksum "build.gradle" }}-{{ checksum  "app/build.gradle" }}
+      - run:
+          name: Install fastlane
+          command: bundle install
+      - run:
+          name: Store the google play key
+          command: echo $GOOGLE_PLAY_KEY > gplay_key.json
+      - run:
+          name: Init fastlane supply
+          command: bundle exec fastlane supply init
+      - run:
+          name: Download ci's data
+          command: ./ci/download_ci_data.sh
+      - run:
+          name: Deploy the app to the internal track
+          command: bundle exec fastlane deploy_internal
+      - save_cache:
+          paths:
+            - ~/.gradle
+          key: jars-{{ checksum "build.gradle" }}-{{ checksum  "app/build.gradle" }}
+
+workflows:
+  version: 2
+
+  develop:
+    jobs:
+     - debug-build:
+          filters:
+            branches:
+              ignore: master
+
+  deploy-internal:
+    jobs:
+      - deploy-internal:
+          filters:
+            branches:
+              only: /internal.*/
